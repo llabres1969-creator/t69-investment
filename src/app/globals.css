@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f7f9fc;
+  --surface: #ffffff;
+  --surface-2: #eef4fb;
+  --line: #d6dfeb;
+  --text: #111111;
+  --muted: #5f6b7a;
+
+  --primary: #ff6a00;
+  --primary-hover: #e85d00;
+  --primary-soft: #ffe3cf;
+
+  --secondary: #00a3ff;
+  --secondary-hover: #008ae0;
+  --secondary-deep: #0a2a66;
+
+  --success: #19b56b;
+  --danger: #e0473e;
+
+  --radius-control: 16px;
+  --radius-card: 22px;
+  --radius-panel: 28px;
+  --shadow-card: 0 18px 60px rgba(10, 42, 102, 0.1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-deep: var(--secondary-deep);
+
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
+  --shadow-card: var(--shadow-card);
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
