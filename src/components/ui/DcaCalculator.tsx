@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { buildFullSeries, TOTAL_MONTHS } from "@/lib/priceSeries";
-import { monthLabel } from "@/lib/format";
+import { monthLabel, NUM_CLASS } from "@/lib/format";
 import { Currency, convert, formatCurrency } from "@/lib/useCurrency";
 
 const MAX_YEARS = Math.floor(TOTAL_MONTHS / 12);
@@ -140,17 +140,19 @@ export function DcaCalculator({
       </div>
 
       <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
-        <div className="rounded-2xl bg-surface-2 p-3.5">
+        <div className="rounded-control bg-surface-2 p-3.5">
           <div className="mb-1 text-[11px] text-muted">Aportado</div>
-          <div className="text-[16px] font-bold">{fmt(contributed)}</div>
+          <div className={`${NUM_CLASS} text-[16px] font-bold`}>{fmt(contributed)}</div>
         </div>
-        <div className="rounded-2xl bg-surface-2 p-3.5">
+        <div className="rounded-control bg-surface-2 p-3.5">
           <div className="mb-1 text-[11px] text-muted">Hoy (mensual)</div>
-          <div className="text-[16px] font-bold text-success">{fmt(periodicFinal)}</div>
+          <div className={`${NUM_CLASS} text-[16px] font-bold text-success`}>
+            {fmt(periodicFinal)}
+          </div>
         </div>
-        <div className="rounded-2xl bg-surface-2 p-3.5">
+        <div className="rounded-control bg-surface-2 p-3.5">
           <div className="mb-1 text-[11px] text-muted">Hoy (de golpe)</div>
-          <div className="text-[16px] font-bold text-success">{fmt(lumpFinal)}</div>
+          <div className={`${NUM_CLASS} text-[16px] font-bold text-success`}>{fmt(lumpFinal)}</div>
         </div>
       </div>
     </div>
@@ -178,7 +180,7 @@ function SliderField({
     <div>
       <div className="mb-1.5 flex items-baseline justify-between text-[12.5px]">
         <span className="text-muted">{label}</span>
-        <span className="font-bold">{display}</span>
+        <span className={`${NUM_CLASS} font-bold`}>{display}</span>
       </div>
       <input
         type="range"

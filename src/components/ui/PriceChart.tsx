@@ -68,7 +68,7 @@ export function PriceChart({ isin, currentPrice, up }: PriceChartProps) {
         role="img"
         aria-label={`Evolución del precio en los últimos ${months} meses`}
       >
-        <polygon points={areaPoints} fill={color} opacity="0.08" />
+        <polygon points={areaPoints} fill={color} opacity="0.12" />
         <polyline
           points={points.join(" ")}
           fill="none"
