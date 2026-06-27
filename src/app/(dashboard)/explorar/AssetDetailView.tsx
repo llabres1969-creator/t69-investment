@@ -347,9 +347,9 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
           type="number"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value) || 0)}
-          className="mb-4 w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[14px] font-semibold outline-none focus:border-secondary"
+          className="mb-4 w-full rounded-control border border-line bg-surface px-3.5 py-2.5 text-[14px] font-semibold outline-none focus:border-secondary"
         />
-        <div className="mb-4 rounded-xl bg-surface-2 p-4">
+        <div className="mb-4 rounded-control bg-surface-2 p-4">
           <div className="text-[12px] text-muted">Unidades estimadas al precio actual</div>
           <div className="font-mono text-[20px] font-extrabold tracking-tight">
             {units.toFixed(4)}

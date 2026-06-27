@@ -44,7 +44,7 @@ export default function ExplorarPage() {
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Buscar por nombre, ticker o ISIN"
           placeholder="Buscar por nombre, ticker o ISIN…"
-          className="w-full max-w-[280px] rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[13px] outline-none focus:border-secondary"
+          className="w-full max-w-[280px] rounded-control border border-line bg-surface px-3.5 py-2.5 text-[13px] outline-none focus:border-secondary"
         />
       </div>
 

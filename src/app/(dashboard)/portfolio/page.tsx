@@ -134,14 +134,14 @@ export default function PortfolioPage() {
           {hasPositions ? (
             <AllocationRow label="Actual" allocation={actualAllocation} />
           ) : (
-            <div className="rounded-xl bg-surface-2 p-3 text-[12.5px] text-muted">
+            <div className="rounded-control bg-surface-2 p-3 text-[12.5px] text-muted">
               Añade posiciones desde Explorar para ver tu reparto actual.
             </div>
           )}
           {ideal ? (
             <AllocationRow label="Ideal" allocation={ideal} />
           ) : (
-            <div className="rounded-xl bg-surface-2 p-3 text-[12.5px] text-muted">
+            <div className="rounded-control bg-surface-2 p-3 text-[12.5px] text-muted">
               Haz el test de perfil para ver tu cartera ideal aquí.
             </div>
           )}
