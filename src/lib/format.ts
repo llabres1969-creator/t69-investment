@@ -1,3 +1,5 @@
+export const NUM_CLASS = "font-mono tabular-nums";
+
 export function formatBigEur(value: number) {
   if (value >= 1_000_000_000_000) {
     return `${(value / 1_000_000_000_000).toLocaleString("es-ES", { maximumFractionDigits: 2 })} bill. €`;
