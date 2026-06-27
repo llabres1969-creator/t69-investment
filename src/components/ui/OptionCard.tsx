@@ -13,9 +13,9 @@ export function OptionCard({ title, subtitle, active, onClick }: OptionCardProps
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-2xl border p-4 text-left transition-colors",
+        "rounded-card border p-4 text-left transition-colors",
         active
-          ? "border-[#ffb380] bg-gradient-to-b from-surface to-primary-soft/40 shadow-card"
+          ? "border-[rgba(255,106,0,.5)] bg-[rgba(255,106,0,.06)]"
           : "border-line bg-surface hover:bg-surface-2",
       )}
     >
