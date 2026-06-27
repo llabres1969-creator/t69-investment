@@ -16,7 +16,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="shrink-0 bg-secondary-deep px-4 py-4 text-white md:w-[220px] md:py-6">
+    <aside className="shrink-0 bg-secondary-deep px-4 py-4 text-text md:w-[220px] md:py-6">
       <div className="mb-4 text-[18px] font-extrabold tracking-tight md:mb-6">
         T69<span className="text-[#ff9a4d]">.</span>
       </div>
@@ -28,8 +28,10 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "shrink-0 rounded-xl px-3 py-2.5 text-[13px] font-semibold transition-colors",
-                active ? "bg-white/15 text-white" : "text-white/70 hover:bg-white/10",
+                "shrink-0 border-l-[3px] px-3 py-2.5 text-[13px] font-semibold transition-colors",
+                active
+                  ? "border-primary bg-surface-2 text-text"
+                  : "border-transparent text-muted hover:bg-surface-2 hover:text-text",
               )}
             >
               {item.label}
