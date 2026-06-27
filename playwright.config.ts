@@ -6,12 +6,12 @@ export default defineConfig({
   retries: 0,
   reporter: "list",
   use: {
-    baseURL: "http://localhost:3070",
+    baseURL: "http://localhost:3000",
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run dev -- -p 3070",
-    url: "http://localhost:3070",
+    command: "npm run dev",
+    url: "http://localhost:3000",
     reuseExistingServer: true,
     timeout: 60_000,
   },
