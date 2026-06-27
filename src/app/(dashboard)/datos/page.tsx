@@ -77,7 +77,7 @@ export default function DatosPage() {
         >
           Empezar de cero (borrar todo)
         </button>
-        {message && <p className="mt-2 text-[12.5px] font-semibold text-secondary-deep">{message}</p>}
+        {message && <p className="mt-2 text-[12.5px] font-semibold text-secondary">{message}</p>}
       </Card>
     </div>
   );

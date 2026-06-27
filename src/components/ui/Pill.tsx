@@ -5,7 +5,7 @@ type Tone = "orange" | "blue";
 
 const toneClasses: Record<Tone, string> = {
   orange: "bg-primary-soft text-primary-hover",
-  blue: "bg-surface-2 text-secondary-deep",
+  blue: "bg-surface-2 text-secondary",
 };
 
 interface PillProps extends HTMLAttributes<HTMLSpanElement> {

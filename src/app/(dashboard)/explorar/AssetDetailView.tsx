@@ -38,7 +38,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
       <button
         type="button"
         onClick={onBack}
-        className="mb-4 text-[13px] font-semibold text-secondary-deep"
+        className="mb-4 text-[13px] font-semibold text-secondary"
       >
         ← Volver al mercado
       </button>
@@ -353,7 +353,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
           <button
             type="button"
             onClick={() => router.push("/portfolio")}
-            className="mt-3 w-full text-center text-[12.5px] font-semibold text-secondary-deep"
+            className="mt-3 w-full text-center text-[12.5px] font-semibold text-secondary"
           >
             Ver en mi cartera →
           </button>

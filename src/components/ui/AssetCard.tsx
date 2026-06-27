@@ -23,7 +23,7 @@ export function AssetCard({ asset, onClick }: AssetCardProps) {
       className="rounded-2xl border border-line bg-surface p-4 text-left transition-colors hover:bg-surface-2"
     >
       <div className="mb-2 flex items-center justify-between">
-        <span className="rounded-full bg-surface-2 px-2.5 py-1 text-[10.5px] font-bold text-secondary-deep">
+        <span className="rounded-full bg-surface-2 px-2.5 py-1 text-[10.5px] font-bold text-secondary">
           {asset.ticker}
         </span>
         <span

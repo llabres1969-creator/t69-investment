@@ -53,7 +53,7 @@ export function PriceChart({ isin, currentPrice, up }: PriceChartProps) {
             className={cn(
               "rounded-full px-2.5 py-1 text-[11px] font-bold transition-colors",
               range === r.key
-                ? "bg-secondary-deep text-white"
+                ? "border border-primary/40 bg-surface-2 text-primary"
                 : "text-muted hover:bg-surface-2",
             )}
           >

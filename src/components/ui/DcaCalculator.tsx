@@ -118,7 +118,7 @@ export function DcaCalculator({
         <polyline
           points={toPoints(periodicSeries)}
           fill="none"
-          stroke="#0a2a66"
+          stroke="#00a3ff"
           strokeWidth="1.6"
           vectorEffect="non-scaling-stroke"
         />
@@ -130,7 +130,7 @@ export function DcaCalculator({
 
       <div className="mb-4 flex flex-wrap gap-4 text-[11.5px]">
         <span className="flex items-center gap-1.5 text-muted">
-          <span className="inline-block h-0.5 w-4 bg-secondary-deep" /> Aportación periódica
+          <span className="inline-block h-0.5 w-4 bg-secondary" /> Aportación periódica
           (mensual)
         </span>
         <span className="flex items-center gap-1.5 text-muted">

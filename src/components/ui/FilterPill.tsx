@@ -14,7 +14,7 @@ export function FilterPill({ label, active, onClick }: FilterPillProps) {
       className={cn(
         "rounded-full px-3.5 py-2 text-[12.5px] font-semibold transition-colors",
         active
-          ? "bg-secondary-deep text-white"
+          ? "border border-primary/40 bg-surface-2 text-primary"
           : "border border-line bg-surface text-muted hover:bg-surface-2",
       )}
     >
