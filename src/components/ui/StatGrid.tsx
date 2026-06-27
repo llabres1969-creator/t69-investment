@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { NUM_CLASS } from "@/lib/format";
 
 export interface Stat {
   label: string;
@@ -21,9 +22,13 @@ export function StatGrid({ stats, columns = 3 }: { stats: Stat[]; columns?: 2 | 
       )}
     >
       {stats.map((stat) => (
-        <div key={stat.label} className="rounded-2xl bg-surface-2 p-3.5">
-          <div className="mb-1 text-[11px] text-muted">{stat.label}</div>
-          <div className={cn("text-[16px] font-bold", toneClasses[stat.tone ?? "default"])}>
+        <div key={stat.label} className="rounded-control bg-surface-2 p-3.5">
+          <div className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-muted">
+            {stat.label}
+          </div>
+          <div
+            className={cn(NUM_CLASS, "text-[16px] font-bold", toneClasses[stat.tone ?? "default"])}
+          >
             {stat.value}
           </div>
         </div>
