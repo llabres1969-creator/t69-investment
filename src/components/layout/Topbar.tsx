@@ -33,7 +33,9 @@ function CurrencyButton({
       onClick={onClick}
       className={cn(
         "h-8 w-8 rounded-full text-[13px] font-bold transition-colors",
-        active ? "bg-secondary-deep text-white" : "text-muted hover:bg-white/60",
+        active
+          ? "border border-primary/40 bg-surface-2 text-primary"
+          : "text-muted hover:bg-surface-2",
       )}
     >
       {label}

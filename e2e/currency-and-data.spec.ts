@@ -14,7 +14,7 @@ test("toggling currency converts portfolio totals and persists across navigation
   await expect(page.getByText("$215", { exact: true }).first()).toBeVisible();
 
   await page.goto("/explorar");
-  await expect(page.getByRole("button", { name: "$", exact: true })).toHaveClass(/bg-secondary-deep/);
+  await expect(page.getByRole("button", { name: "$", exact: true })).toHaveClass(/bg-surface-2/);
 });
 
 test("resetting data clears the portfolio and the profile banner reappears", async ({ page }) => {
