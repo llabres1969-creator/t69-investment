@@ -17,7 +17,7 @@ export const ASSET_CLASS_LABEL: Record<AssetClass, string> = {
 };
 
 export const ASSET_CLASS_COLOR: Record<AssetClass, string> = {
-  rvg: "#0a2a66",
+  rvg: "#4a6fa5",
   rvus: "#00a3ff",
   rf: "#8fb0a0",
   met: "#c89b6c",
