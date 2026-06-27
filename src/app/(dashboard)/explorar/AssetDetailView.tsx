@@ -6,7 +6,7 @@ import { Asset } from "@/lib/assets";
 import { getAssetDetail } from "@/lib/assetDetails";
 import { addPosition } from "@/lib/usePortfolio";
 import { useCurrency, convert, formatCurrency } from "@/lib/useCurrency";
-import { formatBigEur, formatDateEs, formatNumber, formatPct } from "@/lib/format";
+import { formatBigEur, formatDateEs, formatNumber, formatPct, NUM_CLASS } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Pill } from "@/components/ui/Pill";
@@ -56,10 +56,12 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
             </p>
           </div>
           <div className="text-right">
-            <div className="text-[20px] font-extrabold tracking-tight">
+            <div className={`${NUM_CLASS} text-[20px] font-extrabold tracking-tight`}>
               {fmtAsset(asset.price)}
             </div>
-            <div className={`text-[13px] font-bold ${up ? "text-success" : "text-danger"}`}>
+            <div
+              className={`${NUM_CLASS} text-[13px] font-bold ${up ? "text-success" : "text-danger"}`}
+            >
               {formatPct(asset.changePct)}
             </div>
           </div>
@@ -150,17 +152,31 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
         <Card className="mb-4">
           <div className="mb-3 text-[13px] font-bold">Balance</div>
           <div className="divide-y divide-line/60 text-[13px]">
-            <Row label="Activos totales" value={formatBigEur(detail.balanceSheet.totalAssets)} />
+            <Row
+              label="Activos totales"
+              value={formatBigEur(detail.balanceSheet.totalAssets)}
+              valueClassName={NUM_CLASS}
+            />
             <Row
               label="Pasivos totales"
               value={formatBigEur(detail.balanceSheet.totalLiabilities)}
+              valueClassName={NUM_CLASS}
             />
-            <Row label="Caja y equivalentes" value={formatBigEur(detail.balanceSheet.cash)} />
+            <Row
+              label="Caja y equivalentes"
+              value={formatBigEur(detail.balanceSheet.cash)}
+              valueClassName={NUM_CLASS}
+            />
             <Row
               label="Deuda a largo plazo"
               value={formatBigEur(detail.balanceSheet.longTermDebt)}
+              valueClassName={NUM_CLASS}
             />
-            <Row label="Patrimonio neto" value={formatBigEur(detail.balanceSheet.equity)} />
+            <Row
+              label="Patrimonio neto"
+              value={formatBigEur(detail.balanceSheet.equity)}
+              valueClassName={NUM_CLASS}
+            />
           </div>
         </Card>
       )}

@@ -9,6 +9,7 @@ import { useProfileScore } from "@/lib/useProfileScore";
 import { usePortfolio } from "@/lib/usePortfolio";
 import { ASSETS } from "@/lib/assets";
 import { convert, formatCurrency, useCurrency } from "@/lib/useCurrency";
+import { NUM_CLASS } from "@/lib/format";
 import {
   Allocation,
   AssetClass,
@@ -159,12 +160,14 @@ export default function PortfolioPage() {
             >
               <div>
                 <div className="text-[13px] font-semibold">{p.asset.name}</div>
-                <div className="text-[11.5px] text-muted">
+                <div className={`${NUM_CLASS} text-[11.5px] text-muted`}>
                   {p.units.toFixed(4)} uds · {fmt(p.valueEur)}
                 </div>
               </div>
               <span
-                className={`text-[13px] font-bold ${p.plEur >= 0 ? "text-success" : "text-danger"}`}
+                className={`${NUM_CLASS} text-[13px] font-bold ${
+                  p.plEur >= 0 ? "text-success" : "text-danger"
+                }`}
               >
                 {p.plEur >= 0 ? "+" : ""}
                 {fmt(p.plEur)}
