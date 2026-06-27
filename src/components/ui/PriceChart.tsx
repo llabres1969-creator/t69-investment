@@ -1,25 +1,19 @@
-function seededRandom(seed: number) {
-  let value = seed;
-  return () => {
-    value = (value * 9301 + 49297) % 233280;
-    return value / 233280;
-  };
-}
+"use client";
 
-function buildSeries(isin: string, currentPrice: number, points = 24) {
-  let seed = 0;
-  for (let i = 0; i < isin.length; i++) seed += isin.charCodeAt(i);
-  const rand = seededRandom(seed);
+import { useMemo, useState } from "react";
+import { cn } from "@/lib/cn";
+import { buildFullSeries, TOTAL_MONTHS } from "@/lib/priceSeries";
+import { monthLabel } from "@/lib/format";
 
-  const series: number[] = [];
-  let value = currentPrice * (0.8 + rand() * 0.15);
-  for (let i = 0; i < points - 1; i++) {
-    value *= 1 + (rand() - 0.48) * 0.06;
-    series.push(value);
-  }
-  series.push(currentPrice);
-  return series;
-}
+const RANGES = [
+  { key: "1m", label: "1m", months: 2 },
+  { key: "6m", label: "6m", months: 6 },
+  { key: "1y", label: "1y", months: 12 },
+  { key: "5y", label: "5y", months: 60 },
+  { key: "max", label: "max", months: TOTAL_MONTHS },
+] as const;
+
+type RangeKey = (typeof RANGES)[number]["key"];
 
 interface PriceChartProps {
   isin: string;
@@ -28,14 +22,19 @@ interface PriceChartProps {
 }
 
 export function PriceChart({ isin, currentPrice, up }: PriceChartProps) {
-  const series = buildSeries(isin, currentPrice);
+  const [range, setRange] = useState<RangeKey>("1y");
+  const fullSeries = useMemo(() => buildFullSeries(isin, currentPrice), [isin, currentPrice]);
+
+  const months = RANGES.find((r) => r.key === range)!.months;
+  const series = fullSeries.slice(TOTAL_MONTHS - months);
+
   const min = Math.min(...series);
   const max = Math.max(...series);
   const width = 100;
   const height = 36;
 
   const points = series.map((value, i) => {
-    const x = (i / (series.length - 1)) * width;
+    const x = series.length === 1 ? width : (i / (series.length - 1)) * width;
     const y = max === min ? height / 2 : height - ((value - min) / (max - min)) * height;
     return `${x},${y}`;
   });
@@ -44,23 +43,47 @@ export function PriceChart({ isin, currentPrice, up }: PriceChartProps) {
   const areaPoints = `0,${height} ${points.join(" ")} ${width},${height}`;
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      preserveAspectRatio="none"
-      className="h-24 w-full"
-      role="img"
-      aria-label="Evolución del precio en los últimos 24 periodos"
-    >
-      <polygon points={areaPoints} fill={color} opacity="0.08" />
-      <polyline
-        points={points.join(" ")}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
+    <div>
+      <div className="mb-2 flex justify-end gap-1">
+        {RANGES.map((r) => (
+          <button
+            key={r.key}
+            type="button"
+            onClick={() => setRange(r.key)}
+            className={cn(
+              "rounded-full px-2.5 py-1 text-[11px] font-bold transition-colors",
+              range === r.key
+                ? "bg-secondary-deep text-white"
+                : "text-muted hover:bg-surface-2",
+            )}
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        preserveAspectRatio="none"
+        className="h-24 w-full"
+        role="img"
+        aria-label={`Evolución del precio en los últimos ${months} meses`}
+      >
+        <polygon points={areaPoints} fill={color} opacity="0.08" />
+        <polyline
+          points={points.join(" ")}
+          fill="none"
+          stroke={color}
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+      <div className="mt-1 flex justify-between text-[10.5px] text-muted">
+        <span>{monthLabel(months - 1)}</span>
+        {months > 6 && <span>{monthLabel(Math.floor((months - 1) / 2))}</span>}
+        <span>{monthLabel(0)}</span>
+      </div>
+    </div>
   );
 }
