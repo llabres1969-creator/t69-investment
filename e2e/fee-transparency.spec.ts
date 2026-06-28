@@ -1,0 +1,34 @@
+import { expect, test } from "@playwright/test";
+import { seedProfile } from "./helpers/profile";
+
+test("a curated asset's detail page shows its fee breakdown and total", async ({ page }) => {
+  await seedProfile(page);
+  await page.goto("/explorar");
+  await page.getByText("Apple Inc.", { exact: true }).click();
+
+  await expect(page.getByText("Comisiones")).toBeVisible();
+  await expect(page.getByText("Gestora")).toBeVisible();
+  await expect(page.getByText("0,00%", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Coste total anual estimado")).toBeVisible();
+  await expect(page.getByText("0,15%", { exact: true })).toBeVisible();
+});
+
+test("a non-curated asset's detail page also shows its fee breakdown", async ({ page }) => {
+  await seedProfile(page);
+  await page.goto("/explorar");
+  await page.getByText("Bitcoin", { exact: true }).click();
+
+  await expect(page.getByText("Comisiones")).toBeVisible();
+  await expect(page.getByText("Coste total anual estimado")).toBeVisible();
+  await expect(page.getByText("0,25%", { exact: true })).toBeVisible();
+});
+
+test("the cash account shows zero fees on every line", async ({ page }) => {
+  await seedProfile(page);
+  await page.goto("/explorar");
+  await page.getByText("Cuenta remunerada", { exact: true }).last().click();
+
+  await expect(page.getByText("Comisiones")).toBeVisible();
+  const zeroPercentRows = page.getByText("0,00%", { exact: true });
+  await expect(zeroPercentRows).toHaveCount(4); // Gestora, T69, Custodio, and the total
+});
