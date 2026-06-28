@@ -80,7 +80,7 @@ export const CURATION: Record<string, Curation> = {
       {
         date: "2025-09-01",
         status: "incorporado",
-        note: "Incorporado en sustitución de Tesla, que sale del universo por exceso de concentración de riesgo idiosincrático.",
+        note: "Entra en el universo tras preferir una posición tecnológica diversificada frente a una apuesta individual más concentrada en riesgo idiosincrático.",
       },
     ],
   },
