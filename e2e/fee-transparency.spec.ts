@@ -26,7 +26,11 @@ test("a non-curated asset's detail page also shows its fee breakdown", async ({ 
 test("the cash account shows zero fees on every line", async ({ page }) => {
   await seedProfile(page);
   await page.goto("/explorar");
-  await page.getByText("Cuenta remunerada", { exact: true }).last().click();
+  // "Cuenta remunerada" is also a category filter pill label, so a plain text
+  // locator matches both — scope to the asset-card button specifically (it has
+  // the rounded-card class; the filter pill does not) rather than relying on
+  // DOM order via .last().
+  await page.locator("button.rounded-card", { hasText: "Cuenta remunerada" }).click();
 
   await expect(page.getByText("Comisiones")).toBeVisible();
   const zeroPercentRows = page.getByText("0,00%", { exact: true });
