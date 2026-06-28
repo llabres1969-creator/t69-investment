@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Asset } from "@/lib/assets";
 import { getAssetDetail } from "@/lib/assetDetails";
+import { getCuration, REVIEW_STATUS_LABEL } from "@/lib/curation";
 import { addPosition } from "@/lib/usePortfolio";
 import { useCurrency, convert, formatCurrency } from "@/lib/useCurrency";
 import { formatBigEur, formatDateEs, formatNumber, formatPct, NUM_CLASS } from "@/lib/format";
@@ -23,6 +24,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
   const [added, setAdded] = useState(false);
 
   const detail = getAssetDetail(asset.isin);
+  const curation = getCuration(asset.isin);
   const units = amount / asset.price;
   const up = asset.changePct >= 0;
 
@@ -298,6 +300,36 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
                 {c}
               </Pill>
             ))}
+          </div>
+        </Card>
+      )}
+
+      {curation && (
+        <Card className="mb-4">
+          <div className="mb-3 text-[13px] font-bold">Seguimiento de T69</div>
+          <div className="mb-4">
+            <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted">
+              Por qué está en el universo
+            </div>
+            <p className="text-[13.5px] leading-relaxed">{curation.thesis}</p>
+          </div>
+          <div>
+            <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted">
+              Historial de revisión
+            </div>
+            <div className="space-y-3">
+              {curation.reviewHistory.map((entry) => (
+                <div key={`${entry.date}-${entry.status}`} className="flex gap-2.5">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <div>
+                    <div className="text-[13px] font-semibold">
+                      {formatDateEs(entry.date)} · {REVIEW_STATUS_LABEL[entry.status]}
+                    </div>
+                    <div className="text-[13px] leading-relaxed text-muted">{entry.note}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </Card>
       )}
