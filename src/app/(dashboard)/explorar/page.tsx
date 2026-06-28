@@ -1,40 +1,57 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ASSETS, ASSET_CATEGORIES, Asset, AssetCategory } from "@/lib/assets";
+import {
+  ASSET_CATEGORIES,
+  Asset,
+  AssetCategory,
+  CURATED_ASSETS,
+  NON_CURATED_ASSETS,
+} from "@/lib/assets";
 import { AssetCard } from "@/components/ui/AssetCard";
 import { FilterPill } from "@/components/ui/FilterPill";
 import { AssetDetailView } from "./AssetDetailView";
 
 type FilterValue = "all" | AssetCategory;
 
+function matchesFilters(asset: Asset, query: string, filter: FilterValue) {
+  const matchesCategory = filter === "all" || asset.category === filter;
+  const matchesQuery =
+    query.trim() === "" ||
+    asset.name.toLowerCase().includes(query.toLowerCase()) ||
+    asset.isin.toLowerCase().includes(query.toLowerCase()) ||
+    asset.ticker.toLowerCase().includes(query.toLowerCase());
+  return matchesCategory && matchesQuery;
+}
+
 export default function ExplorarPage() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FilterValue>("all");
   const [selected, setSelected] = useState<Asset | null>(null);
 
-  const filtered = useMemo(() => {
-    return ASSETS.filter((asset) => {
-      const matchesCategory = filter === "all" || asset.category === filter;
-      const matchesQuery =
-        query.trim() === "" ||
-        asset.name.toLowerCase().includes(query.toLowerCase()) ||
-        asset.isin.toLowerCase().includes(query.toLowerCase()) ||
-        asset.ticker.toLowerCase().includes(query.toLowerCase());
-      return matchesCategory && matchesQuery;
-    });
-  }, [query, filter]);
+  const filteredCurated = useMemo(
+    () => CURATED_ASSETS.filter((asset) => matchesFilters(asset, query, filter)),
+    [query, filter],
+  );
+  const filteredOther = useMemo(
+    () => NON_CURATED_ASSETS.filter((asset) => matchesFilters(asset, query, filter)),
+    [query, filter],
+  );
 
   if (selected) {
     return <AssetDetailView asset={selected} onBack={() => setSelected(null)} />;
   }
+
+  const totalShown = filteredCurated.length + filteredOther.length;
+  const totalAvailable = CURATED_ASSETS.length + NON_CURATED_ASSETS.length;
+  const nothingFound = totalShown === 0;
 
   return (
     <div>
       <div className="mb-4">
         <h1 className="text-[24px] font-extrabold tracking-tight">Explorar activos</h1>
         <p className="mt-0.5 text-[12.5px] text-muted">
-          {filtered.length} de {ASSETS.length} activos disponibles. Pulsa cualquiera para ver su ficha.
+          {totalShown} de {totalAvailable} activos disponibles. Pulsa cualquiera para ver su ficha.
         </p>
       </div>
 
@@ -60,16 +77,40 @@ export default function ExplorarPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((asset) => (
-          <AssetCard key={asset.isin} asset={asset} onClick={() => setSelected(asset)} />
-        ))}
-        {filtered.length === 0 && (
-          <p className="col-span-full py-10 text-center text-[13px] text-muted">
-            No hay activos que coincidan con tu búsqueda.
+      {nothingFound && (
+        <p className="py-10 text-center text-[13px] text-muted">
+          No hay activos que coincidan con tu búsqueda.
+        </p>
+      )}
+
+      {filteredCurated.length > 0 && (
+        <div className="mb-6">
+          <h2 className="mb-1 text-[15px] font-bold">Universo T69</h2>
+          <p className="mb-3 text-[12.5px] text-muted">
+            Estos son los activos que seleccionamos y revisamos activamente. Es nuestra
+            selección, no una lista exhaustiva de mercado.
           </p>
-        )}
-      </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredCurated.map((asset) => (
+              <AssetCard key={asset.isin} asset={asset} onClick={() => setSelected(asset)} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {filteredOther.length > 0 && (
+        <div>
+          <h2 className="mb-1 text-[15px] font-bold">Otros activos</h2>
+          <p className="mb-3 text-[12.5px] text-muted">
+            Accesibles pero fuera de nuestro universo curado — sin seguimiento de T69.
+          </p>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredOther.map((asset) => (
+              <AssetCard key={asset.isin} asset={asset} onClick={() => setSelected(asset)} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
