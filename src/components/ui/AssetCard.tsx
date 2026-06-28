@@ -23,9 +23,16 @@ export function AssetCard({ asset, onClick }: AssetCardProps) {
       className="rounded-card border border-line bg-surface p-4 text-left transition-colors hover:bg-surface-2"
     >
       <div className="mb-2 flex items-center justify-between">
-        <span className="rounded-full bg-surface-2 px-2.5 py-1 text-[10.5px] font-bold text-secondary">
-          {asset.ticker}
-        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="rounded-full bg-surface-2 px-2.5 py-1 text-[10.5px] font-bold text-secondary">
+            {asset.ticker}
+          </span>
+          {asset.curated && (
+            <span className="rounded-full bg-primary-soft px-2 py-1 text-[9.5px] font-bold text-primary-hover">
+              T69
+            </span>
+          )}
+        </div>
         <span
           className={cn(
             "text-[12px] font-bold",
