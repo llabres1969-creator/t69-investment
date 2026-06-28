@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Asset } from "@/lib/assets";
 import { getAssetDetail } from "@/lib/assetDetails";
 import { getCuration, REVIEW_STATUS_LABEL } from "@/lib/curation";
+import { getFees, totalFeePct } from "@/lib/fees";
 import { addPosition } from "@/lib/usePortfolio";
 import { useCurrency, convert, formatCurrency } from "@/lib/useCurrency";
 import { formatBigEur, formatDateEs, formatNumber, formatPct, NUM_CLASS } from "@/lib/format";
@@ -25,6 +26,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
 
   const detail = getAssetDetail(asset.isin);
   const curation = getCuration(asset.isin);
+  const fees = getFees(asset.isin);
   const units = amount / asset.price;
   const up = asset.changePct >= 0;
 
@@ -122,6 +124,31 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
                 </span>
               </div>
             )}
+          </div>
+        </Card>
+      )}
+
+      {fees && (
+        <Card className="mb-4">
+          <div className="mb-3 text-[13px] font-bold">Comisiones</div>
+          <div className="divide-y divide-line/60 text-[13px]">
+            <Row label="Gestora" value={`${formatNumber(fees.managerPct, 2)}%`} valueClassName={NUM_CLASS} />
+            <Row
+              label="T69"
+              value={`${formatNumber(fees.distributionPct, 2)}%`}
+              valueClassName={NUM_CLASS}
+            />
+            <Row
+              label="Custodio"
+              value={`${formatNumber(fees.custodyPct, 2)}%`}
+              valueClassName={NUM_CLASS}
+            />
+          </div>
+          <div className="mt-3 flex items-center justify-between border-t border-line pt-3">
+            <span className="text-[13px] font-bold">Coste total anual estimado</span>
+            <span className={`${NUM_CLASS} text-[13px] font-bold`}>
+              {formatNumber(totalFeePct(fees), 2)}%
+            </span>
           </div>
         </Card>
       )}
