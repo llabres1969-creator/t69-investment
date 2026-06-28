@@ -28,7 +28,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
   const detail = getAssetDetail(asset.isin);
   const curation = getCuration(asset.isin);
   const fees = getFees(asset.isin);
-  const taxation = detail ? getTaxation(detail.catalog.type) : undefined;
+  const taxation = detail?.catalog ? getTaxation(detail.catalog.type) : undefined;
   const units = amount / asset.price;
   const up = asset.changePct >= 0;
 
