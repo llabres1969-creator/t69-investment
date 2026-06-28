@@ -8,6 +8,7 @@ export interface Asset {
   ticker: string;
   category: AssetCategory;
   assetClass: AssetClass;
+  curated: boolean;
   price: number;
   changePct: number;
   currency: "EUR" | "USD";
@@ -21,6 +22,7 @@ export const ASSETS: Asset[] = [
     ticker: "VWCE",
     assetClass: "rvg",
     category: "ETFs",
+    curated: true,
     price: 132.4,
     changePct: 0.8,
     currency: "EUR",
@@ -32,6 +34,7 @@ export const ASSETS: Asset[] = [
     ticker: "SWDA",
     assetClass: "rvg",
     category: "ETFs",
+    curated: true,
     price: 94.1,
     changePct: 1.2,
     currency: "EUR",
@@ -43,6 +46,7 @@ export const ASSETS: Asset[] = [
     ticker: "IEGA",
     assetClass: "rf",
     category: "ETFs",
+    curated: true,
     price: 168.9,
     changePct: -0.3,
     currency: "EUR",
@@ -54,6 +58,7 @@ export const ASSETS: Asset[] = [
     ticker: "AAPL",
     assetClass: "rvus",
     category: "Acciones",
+    curated: true,
     price: 214.3,
     changePct: 1.6,
     currency: "USD",
@@ -65,6 +70,7 @@ export const ASSETS: Asset[] = [
     ticker: "MSFT",
     assetClass: "rvus",
     category: "Acciones",
+    curated: true,
     price: 421.7,
     changePct: 0.4,
     currency: "USD",
@@ -76,6 +82,7 @@ export const ASSETS: Asset[] = [
     ticker: "TSLA",
     assetClass: "rvus",
     category: "Acciones",
+    curated: false,
     price: 248.9,
     changePct: -2.1,
     currency: "USD",
@@ -87,6 +94,7 @@ export const ASSETS: Asset[] = [
     ticker: "BTC",
     assetClass: "cri",
     category: "Cripto",
+    curated: false,
     price: 61_200,
     changePct: 3.4,
     currency: "EUR",
@@ -98,6 +106,7 @@ export const ASSETS: Asset[] = [
     ticker: "ETH",
     assetClass: "cri",
     category: "Cripto",
+    curated: false,
     price: 3_350,
     changePct: 2.1,
     currency: "EUR",
@@ -109,6 +118,7 @@ export const ASSETS: Asset[] = [
     ticker: "KO-DAX",
     assetClass: "met",
     category: "Derivados",
+    curated: false,
     price: 18.45,
     changePct: -4.7,
     currency: "EUR",
@@ -120,6 +130,7 @@ export const ASSETS: Asset[] = [
     ticker: "CASH",
     assetClass: "rf",
     category: "Cuenta remunerada",
+    curated: true,
     price: 1,
     changePct: 0,
     currency: "EUR",
@@ -134,3 +145,6 @@ export const ASSET_CATEGORIES: AssetCategory[] = [
   "Derivados",
   "Cuenta remunerada",
 ];
+
+export const CURATED_ASSETS: Asset[] = ASSETS.filter((a) => a.curated);
+export const NON_CURATED_ASSETS: Asset[] = ASSETS.filter((a) => !a.curated);
