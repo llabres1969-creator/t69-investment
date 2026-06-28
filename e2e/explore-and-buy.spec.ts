@@ -1,8 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { seedProfile } from "./helpers/profile";
 
 test("buying an asset from the explorer shows up as a real position in the portfolio", async ({
   page,
 }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await page.getByText("Bitcoin", { exact: true }).click();
 
@@ -22,6 +24,7 @@ test("buying an asset from the explorer shows up as a real position in the portf
 });
 
 test("the search box filters the asset grid", async ({ page }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await expect(page.getByText("Vanguard FTSE All-World")).toBeVisible();
 
@@ -31,6 +34,7 @@ test("the search box filters the asset grid", async ({ page }) => {
 });
 
 test("category pills filter the asset grid", async ({ page }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await page.getByRole("button", { name: "Cripto", exact: true }).click();
 

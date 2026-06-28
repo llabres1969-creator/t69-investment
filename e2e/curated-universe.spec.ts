@@ -1,8 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { seedProfile } from "./helpers/profile";
 
 test("Explorar shows two distinct sections: Universo T69 and Otros activos", async ({
   page,
 }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
 
   await expect(page.getByRole("heading", { name: "Universo T69" })).toBeVisible();
@@ -25,6 +27,7 @@ test("Explorar shows two distinct sections: Universo T69 and Otros activos", asy
 test("filtering to a category with no curated matches hides the Universo T69 heading", async ({
   page,
 }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await page.getByRole("button", { name: "Cripto", exact: true }).click();
 
@@ -38,6 +41,7 @@ test("filtering to a category with no curated matches hides the Universo T69 hea
 test("a curated asset's detail page shows Seguimiento de T69 with thesis and review history", async ({
   page,
 }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await page.getByText("Apple Inc.", { exact: true }).click();
 
@@ -48,6 +52,7 @@ test("a curated asset's detail page shows Seguimiento de T69 with thesis and rev
 });
 
 test("a non-curated asset's detail page has no Seguimiento de T69 section", async ({ page }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await page.getByText("Bitcoin", { exact: true }).click();
 

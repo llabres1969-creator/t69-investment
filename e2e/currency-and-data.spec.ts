@@ -1,8 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { seedProfile } from "./helpers/profile";
 
 test("toggling currency converts portfolio totals and persists across navigation", async ({
   page,
 }) => {
+  await seedProfile(page);
   await page.goto("/explorar");
   await page.getByText("Vanguard FTSE All-World").click();
   await page.getByRole("button", { name: "Añadir a mi cartera" }).click();
@@ -17,7 +19,14 @@ test("toggling currency converts portfolio totals and persists across navigation
   await expect(page.getByRole("button", { name: "$", exact: true })).toHaveClass(/text-primary/);
 });
 
-test("resetting data clears the portfolio and the profile banner reappears", async ({ page }) => {
+test("resetting data clears the portfolio and the profile gate reactivates", async ({ page }) => {
+  // Not seedProfile() here: addInitScript re-seeds localStorage on every navigation
+  // in this context, which would silently undo the reset this test performs partway
+  // through. A one-time page.evaluate (after an always-accessible route has loaded a
+  // document) sets the value without re-applying itself on later navigations.
+  await page.goto("/educacion");
+  await page.evaluate(() => window.localStorage.setItem("t69_profile_score", "50"));
+
   await page.goto("/explorar");
   await page.getByText("Bitcoin", { exact: true }).click();
   await page.getByRole("button", { name: "Añadir a mi cartera" }).click();
@@ -26,7 +35,8 @@ test("resetting data clears the portfolio and the profile banner reappears", asy
   await page.getByRole("button", { name: "Empezar de cero" }).click();
   await expect(page.getByText("Se ha borrado tu cartera")).toBeVisible();
 
+  // "Empezar de cero" also clears the saved profile score, so /portfolio is gated
+  // again — it should redirect to /test instead of showing the (now reset) portfolio.
   await page.goto("/portfolio");
-  await expect(page.getByText("Aún no tienes posiciones")).toBeVisible();
-  await expect(page.getByText("Descubre cómo deberías repartir tu dinero")).toBeVisible();
+  await expect(page).toHaveURL("/test");
 });
