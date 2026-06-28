@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { KpiCard } from "@/components/ui/KpiCard";
+import { RequireProfile } from "@/components/RequireProfile";
 import { useProfileScore } from "@/lib/useProfileScore";
 import { usePortfolio } from "@/lib/usePortfolio";
 import { ASSETS } from "@/lib/assets";
@@ -64,8 +65,9 @@ export default function PortfolioPage() {
   const loaded = scoreLoaded && positionsLoaded;
 
   return (
-    <div>
-      <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+    <RequireProfile>
+      <div>
+        <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-extrabold tracking-tight">Mi cartera</h1>
           <p className="mt-0.5 text-[12.5px] text-muted">
@@ -183,7 +185,8 @@ export default function PortfolioPage() {
           </div>
         )}
       </Card>
-    </div>
+      </div>
+    </RequireProfile>
   );
 }
 
