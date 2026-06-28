@@ -22,8 +22,9 @@ test("toggling currency converts portfolio totals and persists across navigation
 test("resetting data clears the portfolio and the profile gate reactivates", async ({ page }) => {
   // Not seedProfile() here: addInitScript re-seeds localStorage on every navigation
   // in this context, which would silently undo the reset this test performs partway
-  // through. A one-time page.evaluate (after an always-accessible route has loaded a
-  // document) sets the value without re-applying itself on later navigations.
+  // through. A one-time page.evaluate sets the value without re-applying itself on
+  // later navigations. /educacion isn't gated by RequireProfile, so it loads fine
+  // even with no profile score yet — we just need any document to call evaluate on.
   await page.goto("/educacion");
   await page.evaluate(() => window.localStorage.setItem("t69_profile_score", "50"));
 
