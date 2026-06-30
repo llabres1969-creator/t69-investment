@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { seedProfile } from "./helpers/profile";
 
-test("the sidebar shows Transacciones, Metas and Documentos between Mi cartera and Explorar activos", async ({
+test("the sidebar shows the hierarchical nav with Mi Cartera group expanded", async ({
   page,
 }) => {
   await seedProfile(page);
@@ -9,15 +9,18 @@ test("the sidebar shows Transacciones, Metas and Documentos between Mi cartera a
 
   const labels = await page.locator("nav a").allTextContents();
   expect(labels).toEqual([
-    "Test de perfil",
-    "Mi cartera",
+    "Dashboard",
     "Pregunta a Tony",
+    "Radar",
+    "Mi Cartera",
+    "Mis datos",
+    "Test de perfil",
+    "Explorar activos",
     "Transacciones",
     "Metas",
     "Documentos",
-    "Explorar activos",
-    "Educación",
-    "Mis datos",
+    "Roadmap",
+    "Comunidad",
   ]);
 });
 
