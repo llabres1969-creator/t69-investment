@@ -11,6 +11,7 @@ test("the sidebar shows Transacciones, Metas and Documentos between Mi cartera a
   expect(labels).toEqual([
     "Test de perfil",
     "Mi cartera",
+    "Pregunta a Tony",
     "Transacciones",
     "Metas",
     "Documentos",
