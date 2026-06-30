@@ -87,7 +87,7 @@ export default function ExplorarPage() {
 
           {filteredCurated.length > 0 && (
             <div className="mb-6">
-              <h2 className="mb-1 text-[15px] font-bold">Universo T69</h2>
+              <h2 className="mb-1 text-[15px] font-bold">Universo Tony</h2>
               <p className="mb-3 text-[12.5px] text-muted">
                 Estos son los activos que seleccionamos y revisamos activamente. Es nuestra
                 selección, no una lista exhaustiva de mercado.
@@ -104,7 +104,7 @@ export default function ExplorarPage() {
             <div>
               <h2 className="mb-1 text-[15px] font-bold">Otros activos</h2>
               <p className="mb-3 text-[12.5px] text-muted">
-                Accesibles pero fuera de nuestro universo curado — sin seguimiento de T69.
+                Accesibles pero fuera de nuestro universo curado — sin seguimiento de Tony.
               </p>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredOther.map((asset) => (

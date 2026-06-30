@@ -136,7 +136,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
           <div className="divide-y divide-line/60 text-[13px]">
             <Row label="Gestora" value={`${formatNumber(fees.managerPct, 2)}%`} valueClassName={NUM_CLASS} />
             <Row
-              label="T69"
+              label="Tony"
               value={`${formatNumber(fees.distributionPct, 2)}%`}
               valueClassName={NUM_CLASS}
             />
@@ -351,7 +351,7 @@ export function AssetDetailView({ asset, onBack }: { asset: Asset; onBack: () =>
 
       {curation && (
         <Card className="mb-4">
-          <div className="mb-3 text-[13px] font-bold">Seguimiento de T69</div>
+          <div className="mb-3 text-[13px] font-bold">Seguimiento de Tony</div>
           <div className="mb-4">
             <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted">
               Por qué está en el universo

@@ -29,7 +29,7 @@ export function AssetCard({ asset, onClick }: AssetCardProps) {
           </span>
           {asset.curated && (
             <span className="rounded-full bg-primary-soft px-2 py-1 text-[9.5px] font-bold text-primary-hover">
-              T69
+              Tony
             </span>
           )}
         </div>

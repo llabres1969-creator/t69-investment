@@ -31,7 +31,7 @@ export const CURATION: Record<string, Curation> = {
       {
         date: "2025-10-10",
         status: "incorporado",
-        note: "Entra en el universo T69 tras nuestra revisión trimestral de ETFs globales.",
+        note: "Entra en el universo Tony tras nuestra revisión trimestral de ETFs globales.",
       },
     ],
   },

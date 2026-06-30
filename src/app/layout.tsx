@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "T69 Investment",
+  title: "Tony",
   description: "Test de perfil de inversor y cartera ideal.",
 };
 

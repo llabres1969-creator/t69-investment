@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { ASSETS, CURATED_ASSETS, NON_CURATED_ASSETS } from "@/lib/assets";
 
 describe("curated universe composition", () => {
-  it("marks exactly the six T69-curated ISINs as curated", () => {
+  it("marks exactly the six Tony-curated ISINs as curated", () => {
     const curatedIsins = CURATED_ASSETS.map((a) => a.isin).sort();
     expect(curatedIsins).toEqual(
       [

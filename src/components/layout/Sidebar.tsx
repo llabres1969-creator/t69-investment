@@ -18,7 +18,7 @@ export function Sidebar() {
   return (
     <aside className="shrink-0 bg-secondary-deep px-4 py-4 text-text md:w-[220px] md:py-6">
       <div className="mb-4 text-[18px] font-extrabold tracking-tight md:mb-6">
-        T69<span className="text-[#ff9a4d]">.</span>
+        Tony<span className="text-[#ff9a4d]">.</span>
       </div>
       <nav className="flex gap-2 overflow-x-auto md:flex-col md:overflow-visible">
         {NAV_ITEMS.map((item) => {
