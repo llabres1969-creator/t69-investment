@@ -87,7 +87,8 @@ export function Sidebar() {
                   </Link>
                   <button
                     onClick={toggle}
-                    aria-label={entry.label}
+                    aria-label={`Expandir ${entry.label}`}
+                    aria-expanded={open}
                     className="shrink-0 rounded-full p-1.5 text-muted transition-colors hover:bg-surface-2 hover:text-text"
                   >
                     <span
