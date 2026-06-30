@@ -7,7 +7,7 @@ export default function EducacionPage() {
     <div>
       <div className="mb-5 flex items-start justify-between">
         <div>
-          <h1 className="text-[24px] font-extrabold tracking-tight">Educación</h1>
+          <h1 className="font-serif text-[28px] font-bold tracking-tight">Educación</h1>
           <p className="mt-0.5 text-[12.5px] text-muted">
             Conceptos básicos para entender tu cartera y tus decisiones de inversión.
           </p>

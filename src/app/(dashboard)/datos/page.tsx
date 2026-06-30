@@ -50,7 +50,7 @@ export default function DatosPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-[24px] font-extrabold tracking-tight">Mis datos</h1>
+      <h1 className="mb-1 font-serif text-[28px] font-bold tracking-tight">Mis datos</h1>
       <p className="mb-5 text-[12.5px] text-muted">
         No hace falta crear cuenta: tu perfil y tu cartera se guardan en este navegador. Para
         llevarlos a otro equipo, expórtalos a un archivo e impórtalo allí.

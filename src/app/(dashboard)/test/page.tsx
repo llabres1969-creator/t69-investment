@@ -52,7 +52,7 @@ export default function TestPage() {
           <div className="mb-0.5 text-[12px] font-bold text-muted">
             Pregunta {step + 1} de {QUIZ_QUESTIONS.length}
           </div>
-          <h1 className="text-[24px] font-extrabold tracking-tight">Test de perfil</h1>
+          <h1 className="font-serif text-[28px] font-bold tracking-tight">Test de perfil</h1>
         </div>
         {provisionalScore !== null && (
           <Pill tone="orange">Perfil provisional: {profileLabel(provisionalScore)}</Pill>

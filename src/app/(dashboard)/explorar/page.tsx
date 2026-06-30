@@ -50,7 +50,7 @@ export default function ExplorarPage() {
       ) : (
         <div>
           <div className="mb-4">
-            <h1 className="text-[24px] font-extrabold tracking-tight">Explorar activos</h1>
+            <h1 className="font-serif text-[28px] font-bold tracking-tight">Explorar activos</h1>
             <p className="mt-0.5 text-[12.5px] text-muted">
               {totalShown} de {totalAvailable} activos disponibles. Pulsa cualquiera para ver su
               ficha.
