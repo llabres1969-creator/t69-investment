@@ -185,6 +185,18 @@ export default function PortfolioPage() {
           </div>
         )}
       </Card>
+
+      <Card className="mt-4">
+        <div className="mb-3 text-[13px] font-bold">Pasivos</div>
+        <div className="py-6 text-center">
+          <p className="mb-3 text-[13px] text-muted">
+            Aún no tienes pasivos registrados (hipoteca, préstamos, tarjetas...).
+          </p>
+          <Button disabled size="sm">
+            Próximamente: añadir pasivo
+          </Button>
+        </div>
+      </Card>
       </div>
     </RequireProfile>
   );
