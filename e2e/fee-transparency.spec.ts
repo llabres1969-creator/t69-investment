@@ -34,5 +34,5 @@ test("the cash account shows zero fees on every line", async ({ page }) => {
 
   await expect(page.getByText("Comisiones")).toBeVisible();
   const zeroPercentRows = page.getByText("0,00%", { exact: true });
-  await expect(zeroPercentRows).toHaveCount(4); // Gestora, T69, Custodio, and the total
+  await expect(zeroPercentRows).toHaveCount(4); // Gestora, Tony, Custodio, and the total
 });
