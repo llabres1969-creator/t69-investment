@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { exportPortfolio, importPortfolio, resetPortfolio } from "@/lib/usePortfolio";
 import { clearProfileScore } from "@/lib/useProfileScore";
+import { clearChat } from "@/lib/useChat";
 
 export default function DatosPage() {
   const [message, setMessage] = useState<string | null>(null);
@@ -45,7 +46,8 @@ export default function DatosPage() {
   function handleReset() {
     resetPortfolio();
     clearProfileScore();
-    setMessage("Se ha borrado tu cartera y tu perfil.");
+    clearChat();
+    setMessage("Se ha borrado tu cartera, tu perfil y tu conversación con Tony.");
   }
 
   return (
