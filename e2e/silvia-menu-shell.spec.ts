@@ -73,3 +73,39 @@ test("Mi cartera shows the Pasivos empty state with a disabled action", async ({
   await expect(page.getByText(/Aún no tienes pasivos registrados/)).toBeVisible();
   await expect(page.getByRole("button", { name: "Próximamente: añadir pasivo" })).toBeDisabled();
 });
+
+test("Dashboard shows the empty state", async ({ page }) => {
+  await page.goto("/dashboard");
+  await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
+  await expect(page.getByText("Vista general de tu situación financiera.")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Próximamente: ver resumen" }),
+  ).toBeDisabled();
+});
+
+test("Radar shows the empty state", async ({ page }) => {
+  await page.goto("/radar");
+  await expect(page.getByRole("heading", { name: "Radar" })).toBeVisible();
+  await expect(page.getByText("Señales y oportunidades de mercado.")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Próximamente: activar radar" }),
+  ).toBeDisabled();
+});
+
+test("Roadmap shows the empty state", async ({ page }) => {
+  await page.goto("/roadmap");
+  await expect(page.getByRole("heading", { name: "Roadmap" })).toBeVisible();
+  await expect(page.getByText("Las próximas funcionalidades de Tony.")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Próximamente" }),
+  ).toBeDisabled();
+});
+
+test("Comunidad shows the empty state", async ({ page }) => {
+  await page.goto("/comunidad");
+  await expect(page.getByRole("heading", { name: "Comunidad" })).toBeVisible();
+  await expect(page.getByText("Conecta con otros inversores particulares.")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Próximamente: unirte" }),
+  ).toBeDisabled();
+});
