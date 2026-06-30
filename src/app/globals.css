@@ -51,6 +51,7 @@
 
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
 }
 
 body {
