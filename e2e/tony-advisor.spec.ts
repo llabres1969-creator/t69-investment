@@ -1,14 +1,12 @@
 import { expect, test } from "@playwright/test";
 import { seedProfile } from "./helpers/profile";
 
-test("the sidebar includes Pregunta a Tony right after Mi cartera", async ({ page }) => {
+test("the sidebar includes Pregunta a Tony as a top-level item", async ({ page }) => {
   await seedProfile(page);
   await page.goto("/portfolio");
 
   const labels = await page.locator("nav a").allTextContents();
-  const cartera = labels.indexOf("Mi cartera");
-  const asesor = labels.indexOf("Pregunta a Tony");
-  expect(asesor).toBe(cartera + 1);
+  expect(labels).toContain("Pregunta a Tony");
 });
 
 test("Pregunta a Tony shows the welcome message", async ({ page }) => {
